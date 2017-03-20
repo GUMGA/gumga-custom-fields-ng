@@ -1,5 +1,5 @@
 {
-  "name": "gumga-customfields-ng",
+  "name": "gumga-custom-fields-ng",
   "version": "1.0.0",
   "description": "Gumga Custom Fields (Angular 1.x)",
   "main": "./src/custom-fields.js",

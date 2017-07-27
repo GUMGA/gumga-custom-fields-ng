@@ -1,5 +1,77 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-'use strict';
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// identity function for calling harmony imports with the correct context
+/******/ 	__webpack_require__.i = function(value) { return value; };
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "/dist/";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 
 (function () {
   'use strict';
@@ -18,6 +90,7 @@
         ctrl.open = function () {
           ctrl.isDatePickerOpen = !ctrl.isDatePickerOpen;
         };
+
         setTimeout(function () {
           if (!ctrl.fields) throw 'O componente gumgaCustomFields requer o escopo populado com os fields para geração do template.';
 
@@ -41,7 +114,7 @@
           });
         }, 500);
 
-        var template = '\n        <div class="row" ng-if="f.field.active" ng-repeat="f in ctrl.fields.gumgaCustomFields">\n          <div class="col-md-12">\n            <label ng-bind="f.field.name" ng-if="!ctrl.useLabels" gumga-translate-tag="f.field.translateKey"></label>\n            <label ng-if="ctrl.useLabels">{{f.field.translateKey}}</label>\n            <div ng-switch="f.field.type" class="form-group">\n              <div ng-switch-when="TEXT">\n                <input type="text" ng-model="f.textValue" class="form-control" />\n              </div>\n              <div ng-switch-when="NUMBER">\n                <input type="number" ng-model="f.numberValue" class="form-control" />\n              </div>\n              <div ng-switch-when="DATE">\n                <p class="input-group">\n                  <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="f.dateValue" is-open="ctrl.isDatePickerOpen"/>\n                  <span class="input-group-btn">\n                    <button type="button" class="btn btn-default" ng-click="ctrl.open()">\n                      <i class="glyphicon glyphicon-calendar"></i>\n                    </button>\n                  </span>\n                </p>\n              </div>\n              <div ng-switch-when="SELECTION">\n                <select ng-options="opt[f.field.optionValueField] as opt[f.field.optionLabelField] for opt in f.field.selection" ng-model="f.textValue" class="form-control"></select>\n              </div>\n              <div ng-switch-when="LOGIC">\n                <button type="button" class="btn" ng-class="{\'btn-success\': f.logicValue, \'btn-default\': !f.logicValue}" ng-model="f.logicValue" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false">\n                  {{(f.logicValue) ? "On" : "Off" }}\n                </button>\n              </div>\n            </div>\n          </div>\n        </div>\n        ';
+        var template = '\n        <div class="row">\n          <div class="col-md-{{f.field.colSize || 12}}" ng-if="f.field.active" ng-repeat="f in ctrl.fields.gumgaCustomFields">\n            <label ng-bind="f.field.name" ng-if="!ctrl.useLabels" gumga-translate-tag="f.field.translateKey"></label>\n            <label ng-if="ctrl.useLabels">{{f.field.translateKey}}</label>\n            <div ng-switch="f.field.type" class="form-group">\n              <div ng-switch-when="TEXT">\n                <input type="text" ng-model="f.textValue" class="form-control" />\n              </div>\n              <div ng-switch-when="NUMBER">\n                <input type="number" ng-model="f.numberValue" class="form-control" />\n              </div>\n              <div ng-switch-when="DATE">\n                <p class="input-group">\n                  <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="f.dateValue" is-open="ctrl.isDatePickerOpen"/>\n                  <span class="input-group-btn">\n                    <button type="button" class="btn btn-default" ng-click="ctrl.open()">\n                      <i class="glyphicon glyphicon-calendar"></i>\n                    </button>\n                  </span>\n                </p>\n              </div>\n              <div ng-switch-when="SELECTION">\n                <select ng-options="opt[f.field.optionValueField] as opt[f.field.optionLabelField] for opt in f.field.selection" ng-model="f.textValue" class="form-control"></select>\n              </div>\n              <div ng-switch-when="LOGIC">\n                <button type="button" class="btn" ng-class="{\'btn-success\': f.logicValue, \'btn-default\': !f.logicValue}" ng-model="f.logicValue" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false">\n                  {{(f.logicValue) ? "On" : "Off" }}\n                </button>\n              </div>\n            </div>\n          </div>\n        </div>\n        ';
         $element.append($compile(template)($scope));
       }],
       controllerAs: 'ctrl'
@@ -51,4 +124,5 @@
   angular.module('gumga.customfields', []).directive('gumgaCustomFields', CustomFields);
 })();
 
-},{}]},{},[1]);
+/***/ })
+/******/ ]);

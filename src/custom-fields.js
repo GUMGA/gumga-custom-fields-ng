@@ -15,6 +15,7 @@
         ctrl.open = function() {
           ctrl.isDatePickerOpen = !ctrl.isDatePickerOpen
         }
+        
         setTimeout(function() {
           if (!ctrl.fields) throw 'O componente gumgaCustomFields requer o escopo populado com os fields para geração do template.'
 
@@ -47,8 +48,8 @@
         }, 500)
 
         let template = `
-        <div class="row" ng-if="f.field.active" ng-repeat="f in ctrl.fields.gumgaCustomFields">
-          <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-{{f.field.colSize || 12}}" ng-if="f.field.active" ng-repeat="f in ctrl.fields.gumgaCustomFields">
             <label ng-bind="f.field.name" ng-if="!ctrl.useLabels" gumga-translate-tag="f.field.translateKey"></label>
             <label ng-if="ctrl.useLabels">{{f.field.translateKey}}</label>
             <div ng-switch="f.field.type" class="form-group">

@@ -60,14 +60,7 @@
                 <input type="number" ng-model="f.numberValue" class="form-control" />
               </div>
               <div ng-switch-when="DATE">
-                <p class="input-group">
-                  <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="f.dateValue" is-open="ctrl.isDatePickerOpen"/>
-                  <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" ng-click="ctrl.open()">
-                      <i class="glyphicon glyphicon-calendar"></i>
-                    </button>
-                  </span>
-                </p>
+                <gumga-date ng-model="f.dateValue"></gumga-date>
               </div>
               <div ng-switch-when="SELECTION">
                 <select ng-options="opt[f.field.optionValueField] as opt[f.field.optionLabelField] for opt in f.field.selection" ng-model="f.textValue" class="form-control"></select>
@@ -87,6 +80,6 @@
     }
   }
 
-  angular.module('gumga.customfields', [])
+  angular.module('gumga.customfields', ['gumga.date'])
   .directive('gumgaCustomFields', CustomFields);
 })();

@@ -7,7 +7,8 @@
     "example": "example"
   },
   "dependencies": {
-    "angular": "1.5.8"
+    "angular": "1.5.8",
+    "gumga-date-ng": "^1.4.0"
   },
   "babel": {
     "presets": [

@@ -1,13 +1,14 @@
 {
   "name": "gumga-custom-fields-ng",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Gumga Custom Fields (Angular 1.x)",
   "main": "./src/custom-fields.js",
   "directories": {
     "example": "example"
   },
   "dependencies": {
-    "angular": "1.5.8"
+    "angular": "1.5.8",
+    "gumga-date-ng": "^1.4.0"
   },
   "babel": {
     "presets": [

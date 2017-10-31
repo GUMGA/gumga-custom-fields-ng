@@ -108,7 +108,13 @@
               });
             }
             if (v.field.type == 'DATE') {
-              v.dateValue = new Date(v.dateValue);
+              if (v.dateValue) {
+                v.dateValue = new Date(v.dateValue);
+              } else {
+                if (v.field.defaultValueScript) {
+                  v.dateValue = eval(v.field.defaultValueScript);
+                }
+              }
               $scope.$apply();
             }
           });
